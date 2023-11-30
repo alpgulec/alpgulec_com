@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<meta name="keywords" content="alp gulec, system programming, computer science, algorithms, operating systems"/>
+	<meta name="description" content="Personal website is about computer science"/>
+	
+	<title>Alp Güleç Personal Website</title>
+	
+	<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+	<link href="/files/css/theme.css" rel="stylesheet" type="text/css"/>
+	<script src="/files/js/page.js" type="text/javascript"></script>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EC8VHY4W24"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EC8VHY4W24');
+</script></head>
+<body onload="on_page_load()">
+	<div class="page_div">
+				<table class="page_table">
+			<tr class="page_banner_row"><td><a href="/"><img src="/files/images/banner.png"/></a></td></tr>
+			<tr class="page_menu_row"><td class="page_menu_column"><span class='page_menu_span'><a href='/'>Homepage</a></span><span class='page_menu_span'><a href='/projects'>Projects</a></span><span class='page_menu_span'><a href='/documents'>Documents</a></span><span class='page_menu_span'><a href='/notes'>Notes</a></span><span class='page_menu_span'><a href='/archive'>Archive</a></span><span class='page_menu_span'><a href='/about'>About</a></span><span class='social_icon_bar'><span class='contact_icon'><a href='/' onmouseover='prepare_contact_information_box(this)'><img src='/files/images/contact_icon.png' width='20' height='15'></a></span><span class='x_icon'><a href='https://www.x.com/alpgulec' target='_blank'><img src='/files/images/x_icon.png' width='15' height='15'></a></span></span></td></tr>
+			<tr>
+				<td>
+					<!-- Center Table: Begin -->
+					<table class="center_table">
+						<tr>
+							<td class="center_table_content_column">
+								
+<table class="content_table">
+	<tr>
+		<td class="content_table_column">
+			<b><span class='content_title'><a href='/documents/30-reverse-engineering-code-injection'>Reverse Engineering - Code Injection</a></span></b><pre class='pre_content'>Adding a new code to an executable file may be required in some cases. In this text, we will add a messagebox code to an example application that I created. We will find a space, put our code, call the import. There may be more complex cases that require rebuilding the import section and the import address table, expand, move the code section, create a new code section, etc. This is a tutorial. So, we will keep things simple in this document. Also, really keeping these things simple in an executable is important either. The heuristic modules of antivirus software mostly mark heavily modified executables as a generic malware. Whatever you do in the executable file, your executable may look like a virus.
+
+We will use <b>OllyDbg</b> for debugging and <b>LordPE</b> for PE header modification. You can use your favorite tools for this task.
+
+You can download the example application that belongs to me.  <input type='button' onclick='download()' onmouseover='prepare_download_button(this, "dwn_id_30", "code_injection", "zip")' class='download_button' value='Download'>
+
+Now, we are starting with describing Win32 API MessageBox function.
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>int MessageBox(</td></tr><tr><td class='content_code_table_line_column'>2</td><td>HWND hWnd, // Owner Window Handle</td></tr><tr><td class='content_code_table_line_column'>3</td><td>LPCTSTR lpText, // Text</td></tr><tr><td class='content_code_table_line_column'>4</td><td>LPCTSTR lpCaption, // Title</td></tr><tr><td class='content_code_table_line_column'>5</td><td>UINT uType // MessageBox Type (MB_OK)</td></tr><tr><td class='content_code_table_line_column'>6</td><td>);</td></tr></table></pre>
+Win32 API uses <b>__stdcall</b> calling convention. We will push arguments on the stack right to left.
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>push 0 // MessageBox Type (MB_OK)</td></tr><tr><td class='content_code_table_line_column'>2</td><td>push xxxxxx // Title</td></tr><tr><td class='content_code_table_line_column'>3</td><td>push xxxxxx // Text</td></tr><tr><td class='content_code_table_line_column'>4</td><td>push 0 // Owner Window Handle</td></tr><tr><td class='content_code_table_line_column'>5</td><td>call xxxxxx // Call MessageBox</td></tr></table></pre>
+It is time to open OllyDbg to find empty space to write our code. If you open the example file, you can easily find the empty space that is below. It is the space where we will write our code.
+<img src="/storage/content/30/code_injection_1.png">
+
+At first, we will start with defining our MessageBox title and text in the data section. Putting data in the code section and reading data from the code section is not something expected from normal executable files. You can find the data section below in OllyDbg. The virtual address of the data section of our example executable is <b>44D000 (RVA = 4D000)</b>. You can find an empty space at the end of the section.
+<img src="/storage/content/30/code_injection_2.png">
+
+We will use <b>44E130</b> to define our MessageBox title. Select multiple bytes, right click and choose "Binary" and "Edit". Choose "ASCII" and write "Test Title". Click OK.
+<img src="/storage/content/30/code_injection_3.png">
+
+Now, leave a single byte for the terminator character '0' and edit <b>44E13B</b>. Write "Test Message".
+
+After adding our string data to the data section, select everything you have added and choose "Copy to executable file". Right click on the open window and select "Save file".
+<img src="/storage/content/30/code_injection_4.png">
+
+<b>Note:</b> If you work on the different sections like code and data section, Ollydbg does not copy all modifications at once. You have to save them, seperately.
+
+We have saved our data section modifications now. We will open this modified file and we will write our code on it. <b>44CAE8</b> is the address where we will write our code and define our function parameters.
+<img src="/storage/content/30/code_injection_5.png">
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>push 0</td></tr><tr><td class='content_code_table_line_column'>2</td><td>push 44E130</td></tr><tr><td class='content_code_table_line_column'>3</td><td>push 44E13B</td></tr><tr><td class='content_code_table_line_column'>4</td><td>push 0</td></tr><tr><td class='content_code_table_line_column'>5</td><td>...</td></tr></table></pre>
+We will call the MessageBox function now. Right click and choose "Search for", "Name in current module ". You will find "user32.MessageBoxA" there. Right click on it and choose "Find references to import". You will find a jmp and its address is <b>406498</b>. We will call this address.
+<img src="/storage/content/30/code_injection_6.png">
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>push 0</td></tr><tr><td class='content_code_table_line_column'>2</td><td>push 44E130</td></tr><tr><td class='content_code_table_line_column'>3</td><td>push 44E13B</td></tr><tr><td class='content_code_table_line_column'>4</td><td>push 0</td></tr><tr><td class='content_code_table_line_column'>5</td><td>call 406498</td></tr></table></pre>
+MessageBox part is completed.
+
+We want to make this part "the entry code" of our executable. We will change the executable's entry point and jump to its original entry point after executing our code. So, we are adding a jump to go the executable's original entry point.
+<img src="/storage/content/30/code_injection_7.png">
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>push 0</td></tr><tr><td class='content_code_table_line_column'>2</td><td>push 44E130</td></tr><tr><td class='content_code_table_line_column'>3</td><td>push 44E13B</td></tr><tr><td class='content_code_table_line_column'>4</td><td>push 0</td></tr><tr><td class='content_code_table_line_column'>5</td><td>call 406498</td></tr><tr><td class='content_code_table_line_column'>6</td><td>jmp 44CA98</td></tr></table></pre>
+Everything is done. Right click and choose "Copy to executable", "All modifications", "Copy all". Right click, "Save to file".
+<img src="/storage/content/30/code_injection_8.png">
+
+Open your last saved executable with LordPE. Its entry point address is <b>4CA98</b>. This is RVA (Relative virtual address). We will change it to <b>4CAE8</b> (Our code start location). Click the save button, close LordPE and test your executable.
+<img src="/storage/content/30/code_injection_9.png"></pre>		</td>
+	</tr>
+</table>							</td>
+							<td class="center_table_sidebar_column">
+<div class="sidebar_div">
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Information
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_text_content_column">
+				I completely translated my website into the English language. It is time for <a  href="/notes/14-a-new-start">a new start</a>.			</td>
+		</tr>
+	</table>
+
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Most Read
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_list_content_column">
+				<ul class="sidebar_table_list">
+				<li class='sidebar_table_list_item'><a href='/projects/2-experimental-programming-language-and-win32-ide'>Experimental Programming Language and Win32 IDE</a></li><li class='sidebar_table_list_item'><a href='/projects/33-scientific-operating-system'>Scientific Operating System</a></li><li class='sidebar_table_list_item'><a href='/projects/32-scientific-calculation-library'>Scientific Calculation Library</a></li><li class='sidebar_table_list_item'><a href='/documents/13-specialized-spinlock'>Specialized Spinlock</a></li><li class='sidebar_table_list_item'><a href='/archive/9-detective-bit-bytes-toolbox-the-time-machine-archived'>Detective Bit Bytes' Toolbox - The Time Machine (Archived)</a></li>				</ul>
+			</td>
+		</tr>
+	</table>
+
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Recently Added
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_list_content_column">
+				<ul class="sidebar_table_list">
+				<li class='sidebar_table_list_item'><a href='/archive/19-alpgulec-com'>alpgulec.com</a></li><li class='sidebar_table_list_item'><a href='/archive/9-detective-bit-bytes-toolbox-the-time-machine-archived'>Detective Bit Bytes' Toolbox - The Time Machine (Archived)</a></li><li class='sidebar_table_list_item'><a href='/notes/14-a-new-start'>A New Start</a></li><li class='sidebar_table_list_item'><a href='/archive/18-bilimsehri-com-closed-down'>bilimsehri.com (Closed Down)</a></li><li class='sidebar_table_list_item'><a href='/archive/17-reverse-engineering-documents-archived'>Reverse Engineering Documents (Archived)</a></li>				</ul>
+			</td>
+		</tr>
+	</table>
+</div></td>
+						</tr>
+					</table>
+					<!-- Center Table: End -->
+				</td>
+			</tr>
+			<tr class="page_footer_row"><td><span class="copyright_text">Alp Güleç © 2007 - <script>print_year()</script></span></td></tr>
+		</table>
+	</div>
+</body>
+</html>
+

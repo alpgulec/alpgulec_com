@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<meta name="keywords" content="alp gulec, system programming, computer science, algorithms, operating systems"/>
+	<meta name="description" content="Personal website is about computer science"/>
+	
+	<title>Alp Güleç Personal Website</title>
+	
+	<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+	<link href="/files/css/theme.css" rel="stylesheet" type="text/css"/>
+	<script src="/files/js/page.js" type="text/javascript"></script>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EC8VHY4W24"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EC8VHY4W24');
+</script></head>
+<body onload="on_page_load()">
+	<div class="page_div">
+				<table class="page_table">
+			<tr class="page_banner_row"><td><a href="/"><img src="/files/images/banner.png"/></a></td></tr>
+			<tr class="page_menu_row"><td class="page_menu_column"><span class='page_menu_span'><a href='/'>Homepage</a></span><span class='page_menu_span'><a href='/projects'>Projects</a></span><span class='page_selected_menu_span'><span class='page_menu_span'><a href='/documents'>Documents</a></span></span><span class='page_menu_span'><a href='/notes'>Notes</a></span><span class='page_menu_span'><a href='/archive'>Archive</a></span><span class='page_menu_span'><a href='/about'>About</a></span><span class='social_icon_bar'><span class='contact_icon'><a href='/' onmouseover='prepare_contact_information_box(this)'><img src='/files/images/contact_icon.png' width='20' height='15'></a></span><span class='x_icon'><a href='https://www.x.com/alpgulec' target='_blank'><img src='/files/images/x_icon.png' width='15' height='15'></a></span></span></td></tr>
+			<tr>
+				<td>
+					<!-- Center Table: Begin -->
+					<table class="center_table">
+						<tr>
+							<td class="center_table_content_column">
+								
+<table class="content_table">
+	<tr>
+		<td class="content_table_column">
+			<b><span class='content_title'><a href='/documents/13-specialized-spinlock'>Specialized Spinlock</a></span></b><pre class='pre_content'>In this article, I talk about thread-safety and a specific but common case of it. I didn’t cover the thread-safety concepts in detail and I briefly explain the related ones only. This article considers that the reader has some knowledge about thread-safety, operating system concepts and computer architecture.
+
+Protecting the data from race condition is a complex job and there are various solutions. Generic thread-safety mechanisms (mutex, etc) work great but their performance impact on the system may be huge. In some cases, it is possible to develop lock-free algorithms or disable the locks, temporarily. Developing a customized thread-safety solution according to your needs, doesn’t only protect your data from race condition, it saves your system resources, speeding up your operations as well.
+
+We will design a simple firewall that checks if the IP address of the client is allowed to show an example. Multiple threads will be executed and they will use a shared whitelist for this operation. We will keep the whitelist in a database and we won’t query it for every request. It is quite expensive. So, we will cache the data and update it (timely or depending on a trigger) ; a trigger would be better.<span class='readmore_button_span'><input onclick='location.href="/documents/13-specialized-spinlock"' class='readmore_button' type='button' value='Read more...'/></span></pre><b><span class='content_title'><a href='/documents/12-a-star-algorithm'>A* Algorithm</a></span></b><pre class='pre_content'>Pathfinding algorithms are one of the most important subjects of computer science. They are used in fields such as video games, geography information systems, and networking. They depend on Graph Theory.
+
+Pathfinding algorithms are used for different purposes like finding the shortest route to reduce fuel consumption, calculating the most suitable way for an AI character that belongs to a video game, redirecting network packages to the best way possible, etc.
+
+These algorithms may have so many different variations and they could get so many different parameters according to the circumstances. The shortest way might not be the best way. If a pathfinding algorithm is calculating a path, it should also consider traffic, road work, roads in poor condition, hills, tolls, bridges, etc. Otherwise, it could cause more harm than good. So, finding the best way might be more important than finding the shortest way.
+
+These representations are made with graphs. For example, A, B, C are cities and they are called "nodes". Roads are edges. This graph is an undirected graph. Because the edges are both inbound and outbound. It is also cyclic. Because the graph is closed.<span class='readmore_button_span'><input onclick='location.href="/documents/12-a-star-algorithm"' class='readmore_button' type='button' value='Read more...'/></span></pre><b><span class='content_title'><a href='/documents/11-linear-quadratic-estimation'>Linear Quadratic Estimation</a></span></b><pre class='pre_content'>Even though modeling reality is mostly difficult in life, approximation is possible via predictions which is updated by observations. Initial predictions which do not depend on well analogical inferences, may cause high deviations. But, these predictions may be better if their effects are measurable, follow certain patterns and the results are evaluated, properly. Deviation from reality, may become lower with the inclusion of experience.
+
+Classical physics which looks deterministic, deviates from reality because of factors which are not considered in equation. So, predictions should be revised to avoid from increasing deviation. Equations are just models and they are not equivalent to reality. Results differ slightly from actual. But, small errors increase with the time and deviation increases.<span class='readmore_button_span'><input onclick='location.href="/documents/11-linear-quadratic-estimation"' class='readmore_button' type='button' value='Read more...'/></span></pre><span class='page_bar'><span class='page_button_span'><input class='selected_page_button' type='button' value='1'/></span><span class='page_button_span'><input class='page_button' onclick='location.href="documents-2"' type='button' value='2'/></span></span>		</td>
+	</tr>
+</table>							</td>
+							<td class="center_table_sidebar_column">
+<div class="sidebar_div">
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Information
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_text_content_column">
+				I completely translated my website into the English language. It is time for <a  href="/notes/14-a-new-start">a new start</a>.			</td>
+		</tr>
+	</table>
+
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Most Read
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_list_content_column">
+				<ul class="sidebar_table_list">
+				<li class='sidebar_table_list_item'><a href='/projects/2-experimental-programming-language-and-win32-ide'>Experimental Programming Language and Win32 IDE</a></li><li class='sidebar_table_list_item'><a href='/projects/33-scientific-operating-system'>Scientific Operating System</a></li><li class='sidebar_table_list_item'><a href='/projects/32-scientific-calculation-library'>Scientific Calculation Library</a></li><li class='sidebar_table_list_item'><a href='/documents/13-specialized-spinlock'>Specialized Spinlock</a></li><li class='sidebar_table_list_item'><a href='/archive/9-detective-bit-bytes-toolbox-the-time-machine-archived'>Detective Bit Bytes' Toolbox - The Time Machine (Archived)</a></li>				</ul>
+			</td>
+		</tr>
+	</table>
+
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Recently Added
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_list_content_column">
+				<ul class="sidebar_table_list">
+				<li class='sidebar_table_list_item'><a href='/archive/19-alpgulec-com'>alpgulec.com</a></li><li class='sidebar_table_list_item'><a href='/archive/9-detective-bit-bytes-toolbox-the-time-machine-archived'>Detective Bit Bytes' Toolbox - The Time Machine (Archived)</a></li><li class='sidebar_table_list_item'><a href='/notes/14-a-new-start'>A New Start</a></li><li class='sidebar_table_list_item'><a href='/archive/18-bilimsehri-com-closed-down'>bilimsehri.com (Closed Down)</a></li><li class='sidebar_table_list_item'><a href='/archive/17-reverse-engineering-documents-archived'>Reverse Engineering Documents (Archived)</a></li>				</ul>
+			</td>
+		</tr>
+	</table>
+</div></td>
+						</tr>
+					</table>
+					<!-- Center Table: End -->
+				</td>
+			</tr>
+			<tr class="page_footer_row"><td><span class="copyright_text">Alp Güleç © 2007 - <script>print_year()</script></span></td></tr>
+		</table>
+	</div>
+</body>
+</html>
+

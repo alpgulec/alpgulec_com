@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<meta name="keywords" content="alp gulec, system programming, computer science, algorithms, operating systems"/>
+	<meta name="description" content="Personal website is about computer science"/>
+	
+	<title>Alp Güleç Personal Website</title>
+	
+	<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+	<link href="/files/css/theme.css" rel="stylesheet" type="text/css"/>
+	<script src="/files/js/page.js" type="text/javascript"></script>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EC8VHY4W24"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EC8VHY4W24');
+</script></head>
+<body onload="on_page_load()">
+	<div class="page_div">
+				<table class="page_table">
+			<tr class="page_banner_row"><td><a href="/"><img src="/files/images/banner.png"/></a></td></tr>
+			<tr class="page_menu_row"><td class="page_menu_column"><span class='page_menu_span'><a href='/'>Homepage</a></span><span class='page_menu_span'><a href='/projects'>Projects</a></span><span class='page_menu_span'><a href='/documents'>Documents</a></span><span class='page_menu_span'><a href='/notes'>Notes</a></span><span class='page_menu_span'><a href='/archive'>Archive</a></span><span class='page_menu_span'><a href='/about'>About</a></span><span class='social_icon_bar'><span class='contact_icon'><a href='/' onmouseover='prepare_contact_information_box(this)'><img src='/files/images/contact_icon.png' width='20' height='15'></a></span><span class='x_icon'><a href='https://www.x.com/alpgulec' target='_blank'><img src='/files/images/x_icon.png' width='15' height='15'></a></span></span></td></tr>
+			<tr>
+				<td>
+					<!-- Center Table: Begin -->
+					<table class="center_table">
+						<tr>
+							<td class="center_table_content_column">
+								
+<table class="content_table">
+	<tr>
+		<td class="content_table_column">
+			<b><span class='content_title'><a href='/documents/29-reverse-engineering-runtime-process-modification'>Reverse Engineering - Runtime Process Modification</a></span></b><pre class='pre_content'>Runtime process modification tools are usually called "loader" and "trainer" in Reverse Engineering. Loaders and trainers both manipulate the memory of a loaded software. The manipulated data can be in code or data section(s). Today, software and games use some protection tools against reverse engineering. Heavily guarded packers are mostly used by software instead of games. Packers extract data while the program is running. Some packers extract everything before and jumps to the software's original entry point. Some packers partially extract program's code and packs it again after the code block execution is completed. But this is a CPU-exhaustive operation. So, it is not suitable for every kind of application. Games need lighter software protection solutions. We will mostly focus on software and loaders in this text.
+
+Consider this scenario: There is a software has a form asking for a password. You found the target location and you know how to bypass it. But you cannot simply dump the patched executable file because of the packer. The program crashes on start. There are a lot of things to do. Unpacking dozens of code portions, fixing Import Address Table, fixing hundreds of redirected addresses, decrypting or decoding some crucial parts, etc. The executable is packed and protected well. It is hard to unpack the software or you don't want to waste time on it. So, you can use a loader and manipulate the code when it is unpacked in memory.
+
+The loader application loads/executes the target application, search the memory and replaces the target data with your data. You start the loader and it starts the target application and manipulates it.
+
+Trainers are used for games for cheating and they don't have purposes like cracking the software. You don't have to start a trainer application before running a game. We could also do the same thing for this task. But this is what actually "loader" means. This application also could find the running process and modify its memory without executing it. 
+
+Multiplayer games use anti tampering techniques. Some memory portions are peridiocally checked with some algorithms like CRC (Cyclic reduncy check), etc. CRC is one of the most lightweight algorithms to check a memory portion. It is also supported by most of the processors nowadays and it is possible to use CRC instructions. We can also use some hashing algorithms like MD5, SHA-256, etc. But they are exchaustive operations.
+
+In this case, we will start the process. While the process is running, we will access to the process's memory and if we find the target expected code, we will change the target code with our code. If we do this successfully, we will see the "Accepted." message. If we save the password once, we may not need to use the loader again. It depends on the software's code.
+
+Now it is time to give a code example about loaders. We will crack an example C++ software that belongs to me. I created a new application for this task. In addition to this, I wrote a loader in x86 Assembly by using Windows APIs. You will need to use Microsoft Assembler to assemble it.
+
+You can find the "loader.exe" and "target.exe" files in the "loader.zip" file  <input type='button' onclick='download()' onmouseover='prepare_download_button(this, "dwn_id_29", "loader", "zip")' class='download_button' value='Download'>
+
+Loader x86 Assembly code is below,
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>.486</td></tr><tr><td class='content_code_table_line_column'>2</td><td>.MODEL FLAT,STDCALL</td></tr><tr><td class='content_code_table_line_column'>3</td><td>OPTION CASEMAP:NONE</td></tr><tr><td class='content_code_table_line_column'>4</td><td></td></tr><tr><td class='content_code_table_line_column'>5</td><td>Include windows.inc</td></tr><tr><td class='content_code_table_line_column'>6</td><td>Include kernel32.inc</td></tr><tr><td class='content_code_table_line_column'>7</td><td>Include user32.inc</td></tr><tr><td class='content_code_table_line_column'>8</td><td>Include psapi.inc</td></tr><tr><td class='content_code_table_line_column'>9</td><td></td></tr><tr><td class='content_code_table_line_column'>10</td><td>IncludeLib user32.lib</td></tr><tr><td class='content_code_table_line_column'>11</td><td>IncludeLib kernel32.lib</td></tr><tr><td class='content_code_table_line_column'>12</td><td>IncludeLib psapi.lib</td></tr><tr><td class='content_code_table_line_column'>13</td><td></td></tr><tr><td class='content_code_table_line_column'>14</td><td>.DATA</td></tr><tr><td class='content_code_table_line_column'>15</td><td>targetFileName   BYTE &quot;./target.exe&quot;, 0 ;Target Application Path</td></tr><tr><td class='content_code_table_line_column'>16</td><td></td></tr><tr><td class='content_code_table_line_column'>17</td><td>completeMsgTitle BYTE &quot;OK&quot;, 0</td></tr><tr><td class='content_code_table_line_column'>18</td><td>completeMsgText  BYTE &quot;Operation is completed!&quot;, 0</td></tr><tr><td class='content_code_table_line_column'>19</td><td></td></tr><tr><td class='content_code_table_line_column'>20</td><td>errorMsgTitle    BYTE &quot;Error&quot;, 0</td></tr><tr><td class='content_code_table_line_column'>21</td><td>errorMsgText     BYTE &quot;Target process is not running!&quot;, 0</td></tr><tr><td class='content_code_table_line_column'>22</td><td></td></tr><tr><td class='content_code_table_line_column'>23</td><td>readData         WORD ?</td></tr><tr><td class='content_code_table_line_column'>24</td><td>patchData        BYTE 90h, 90h ;Patch Data (We put two NOP instructions)</td></tr><tr><td class='content_code_table_line_column'>25</td><td></td></tr><tr><td class='content_code_table_line_column'>26</td><td>targetData       BYTE 75h, 05h ;The data that will be replaced.</td></tr><tr><td class='content_code_table_line_column'>27</td><td>targetDataRVA    DWORD 1054h</td></tr><tr><td class='content_code_table_line_column'>28</td><td>targetDataVA     DWORD ?</td></tr><tr><td class='content_code_table_line_column'>29</td><td></td></tr><tr><td class='content_code_table_line_column'>30</td><td>processHandle    HANDLE  ?</td></tr><tr><td class='content_code_table_line_column'>31</td><td></td></tr><tr><td class='content_code_table_line_column'>32</td><td>hModule          HMODULE ? ;Single hModule is used for this example. </td></tr><tr><td class='content_code_table_line_column'>33</td><td>totalHModuleSize DWORD ?</td></tr><tr><td class='content_code_table_line_column'>34</td><td></td></tr><tr><td class='content_code_table_line_column'>35</td><td>processInfo PROCESS_INFORMATION &lt;&gt;</td></tr><tr><td class='content_code_table_line_column'>36</td><td>startupInfo STARTUPINFOA &lt;&gt;</td></tr><tr><td class='content_code_table_line_column'>37</td><td></td></tr><tr><td class='content_code_table_line_column'>38</td><td>;MODULEINFO struct is not defined in the MASM32 header files</td></tr><tr><td class='content_code_table_line_column'>39</td><td>MODULEINFO struct</td></tr><tr><td class='content_code_table_line_column'>40</td><td>virtualBase DWORD ?</td></tr><tr><td class='content_code_table_line_column'>41</td><td>sizeOfImage DWORD ?</td></tr><tr><td class='content_code_table_line_column'>42</td><td>entryPoint DWORD ?</td></tr><tr><td class='content_code_table_line_column'>43</td><td>MODULEINFO ends</td></tr><tr><td class='content_code_table_line_column'>44</td><td></td></tr><tr><td class='content_code_table_line_column'>45</td><td>moduleInfo MODULEINFO &lt;&gt;</td></tr><tr><td class='content_code_table_line_column'>46</td><td></td></tr><tr><td class='content_code_table_line_column'>47</td><td>.CODE</td></tr><tr><td class='content_code_table_line_column'>48</td><td>main:</td></tr><tr><td class='content_code_table_line_column'>49</td><td></td></tr><tr><td class='content_code_table_line_column'>50</td><td>;Execute the target executable</td></tr><tr><td class='content_code_table_line_column'>51</td><td>Invoke CreateProcess, NULL, offset targetFileName, NULL, NULL, TRUE, 0, NULL, NULL,</td></tr><tr><td class='content_code_table_line_column'>52</td><td>	offset startupInfo, offset processInfo</td></tr><tr><td class='content_code_table_line_column'>53</td><td></td></tr><tr><td class='content_code_table_line_column'>54</td><td>;Get a process handle and obtain access rights to access the target process&#039;s memory</td></tr><tr><td class='content_code_table_line_column'>55</td><td>Invoke OpenProcess, PROCESS_ALL_ACCESS, NULL, processInfo.dwProcessId</td></tr><tr><td class='content_code_table_line_column'>56</td><td></td></tr><tr><td class='content_code_table_line_column'>57</td><td>cmp al, 0             </td></tr><tr><td class='content_code_table_line_column'>58</td><td>je application_not_found</td></tr><tr><td class='content_code_table_line_column'>59</td><td></td></tr><tr><td class='content_code_table_line_column'>60</td><td>mov processHandle, eax</td></tr><tr><td class='content_code_table_line_column'>61</td><td></td></tr><tr><td class='content_code_table_line_column'>62</td><td>;Wait for 1 second before calling the EnumProcessModules function.</td></tr><tr><td class='content_code_table_line_column'>63</td><td>Invoke Sleep, 1000</td></tr><tr><td class='content_code_table_line_column'>64</td><td></td></tr><tr><td class='content_code_table_line_column'>65</td><td>;Enumerate the process modules to get the virtual base address</td></tr><tr><td class='content_code_table_line_column'>66</td><td>;(Address Space Layout Randomization is enabled)</td></tr><tr><td class='content_code_table_line_column'>67</td><td>;Note: Only the first hModule is used in this example. </td></tr><tr><td class='content_code_table_line_column'>68</td><td>;You may also need to use the GetModuleFileNameEx API to compare file paths</td></tr><tr><td class='content_code_table_line_column'>69</td><td>Invoke EnumProcessModules, processHandle, offset hModule, sizeof hModule, offset totalHModuleSize</td></tr><tr><td class='content_code_table_line_column'>70</td><td></td></tr><tr><td class='content_code_table_line_column'>71</td><td>;Get moduleInfo</td></tr><tr><td class='content_code_table_line_column'>72</td><td>Invoke GetModuleInformation, processHandle, hModule, offset moduleInfo, sizeof moduleInfo</td></tr><tr><td class='content_code_table_line_column'>73</td><td></td></tr><tr><td class='content_code_table_line_column'>74</td><td>;Calculate the target data virtual address (Target Data VA = Virtual Base + Target Data RVA)</td></tr><tr><td class='content_code_table_line_column'>75</td><td>mov eax, moduleInfo.virtualBase</td></tr><tr><td class='content_code_table_line_column'>76</td><td>add eax, targetDataRVA</td></tr><tr><td class='content_code_table_line_column'>77</td><td>mov targetDataVA, eax</td></tr><tr><td class='content_code_table_line_column'>78</td><td></td></tr><tr><td class='content_code_table_line_column'>79</td><td>repeat_control:</td></tr><tr><td class='content_code_table_line_column'>80</td><td></td></tr><tr><td class='content_code_table_line_column'>81</td><td>;Read data from targetDataVA to control</td></tr><tr><td class='content_code_table_line_column'>82</td><td>Invoke ReadProcessMemory, processHandle, targetDataVA, offset readData, sizeof targetData, NULL</td></tr><tr><td class='content_code_table_line_column'>83</td><td></td></tr><tr><td class='content_code_table_line_column'>84</td><td>;Compare readData to targeData</td></tr><tr><td class='content_code_table_line_column'>85</td><td>mov ecx, 0</td></tr><tr><td class='content_code_table_line_column'>86</td><td>forward:</td></tr><tr><td class='content_code_table_line_column'>87</td><td>mov bl, byte ptr[readData + ecx]</td></tr><tr><td class='content_code_table_line_column'>88</td><td>cmp byte ptr[targetData + ecx], bl</td></tr><tr><td class='content_code_table_line_column'>89</td><td>jne repeat_control</td></tr><tr><td class='content_code_table_line_column'>90</td><td>inc ecx</td></tr><tr><td class='content_code_table_line_column'>91</td><td>cmp ecx, sizeof targetData</td></tr><tr><td class='content_code_table_line_column'>92</td><td>je target_data_found</td></tr><tr><td class='content_code_table_line_column'>93</td><td>jmp forward </td></tr><tr><td class='content_code_table_line_column'>94</td><td></td></tr><tr><td class='content_code_table_line_column'>95</td><td>target_data_found:</td></tr><tr><td class='content_code_table_line_column'>96</td><td>;Write patchData to targetDataVA</td></tr><tr><td class='content_code_table_line_column'>97</td><td>Invoke WriteProcessMemory, processHandle, targetDataVA, offset patchData, sizeof patchData, NULL  </td></tr><tr><td class='content_code_table_line_column'>98</td><td>Invoke MessageBox, NULL, Offset completeMsgText, Offset completeMsgTitle, MB_OK</td></tr><tr><td class='content_code_table_line_column'>99</td><td></td></tr><tr><td class='content_code_table_line_column'>100</td><td>jmp exit</td></tr><tr><td class='content_code_table_line_column'>101</td><td>    </td></tr><tr><td class='content_code_table_line_column'>102</td><td>application_not_found:</td></tr><tr><td class='content_code_table_line_column'>103</td><td>Invoke MessageBox, NULL, Offset errorMsgText, Offset errorMsgTitle, MB_OK</td></tr><tr><td class='content_code_table_line_column'>104</td><td></td></tr><tr><td class='content_code_table_line_column'>105</td><td>exit:    </td></tr><tr><td class='content_code_table_line_column'>106</td><td>Invoke ExitProcess, NULL</td></tr><tr><td class='content_code_table_line_column'>107</td><td></td></tr><tr><td class='content_code_table_line_column'>108</td><td>end main</td></tr></table></pre>
+The loader code starts with CreateProcess and executes the target application. Later, we use EnumProcessModules API to find the virtual base address of the loaded software. Today, almost all applications use Address Space Layout Randomization. So, it is not possible to use fixed addresses like the old days. In this example, we only use the first hModule to get module info. It is enough for our example code. If you need to search all modues, you can also use GetModuleFileNameEx API to search file paths.
+
+We look at the target data virtual address to see if it is ready for writing. We compare the expected data to read data. If we see the expected data, we replace it with our patch data. We put two NOPs and bypass the password control. NOP is an instruction and it means no operation. After overwriting the password conditional jump with NOPs, if you enter a random password, you will see "Accepted".
+
+<b>Test</b>
+1. Start "target.exe"
+2. Type random numbers.
+3. You will see the "Error." message.
+<img src="/storage/content/29/test1.png">
+4. Close the application.
+5. Start "loader.exe", it will also start "target.exe"
+6. You will see the "Operation is completed" popup.
+7. Type random numbers.
+8. You will see the "Accepted." message.
+<img src="/storage/content/29/test2.png">
+9. Done.</pre>		</td>
+	</tr>
+</table>							</td>
+							<td class="center_table_sidebar_column">
+<div class="sidebar_div">
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Information
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_text_content_column">
+				I completely translated my website into the English language. It is time for <a  href="/notes/14-a-new-start">a new start</a>.			</td>
+		</tr>
+	</table>
+
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Most Read
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_list_content_column">
+				<ul class="sidebar_table_list">
+				<li class='sidebar_table_list_item'><a href='/projects/2-experimental-programming-language-and-win32-ide'>Experimental Programming Language and Win32 IDE</a></li><li class='sidebar_table_list_item'><a href='/projects/33-scientific-operating-system'>Scientific Operating System</a></li><li class='sidebar_table_list_item'><a href='/projects/32-scientific-calculation-library'>Scientific Calculation Library</a></li><li class='sidebar_table_list_item'><a href='/documents/13-specialized-spinlock'>Specialized Spinlock</a></li><li class='sidebar_table_list_item'><a href='/archive/9-detective-bit-bytes-toolbox-the-time-machine-archived'>Detective Bit Bytes' Toolbox - The Time Machine (Archived)</a></li>				</ul>
+			</td>
+		</tr>
+	</table>
+
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Recently Added
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_list_content_column">
+				<ul class="sidebar_table_list">
+				<li class='sidebar_table_list_item'><a href='/archive/19-alpgulec-com'>alpgulec.com</a></li><li class='sidebar_table_list_item'><a href='/archive/9-detective-bit-bytes-toolbox-the-time-machine-archived'>Detective Bit Bytes' Toolbox - The Time Machine (Archived)</a></li><li class='sidebar_table_list_item'><a href='/notes/14-a-new-start'>A New Start</a></li><li class='sidebar_table_list_item'><a href='/archive/18-bilimsehri-com-closed-down'>bilimsehri.com (Closed Down)</a></li><li class='sidebar_table_list_item'><a href='/archive/17-reverse-engineering-documents-archived'>Reverse Engineering Documents (Archived)</a></li>				</ul>
+			</td>
+		</tr>
+	</table>
+</div></td>
+						</tr>
+					</table>
+					<!-- Center Table: End -->
+				</td>
+			</tr>
+			<tr class="page_footer_row"><td><span class="copyright_text">Alp Güleç © 2007 - <script>print_year()</script></span></td></tr>
+		</table>
+	</div>
+</body>
+</html>
+
