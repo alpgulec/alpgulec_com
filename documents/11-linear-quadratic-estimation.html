@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<meta name="keywords" content="alp gulec, system programming, computer science, algorithms, operating systems"/>
+	<meta name="description" content="Personal website is about computer science"/>
+	
+	<title>Alp Güleç Personal Website</title>
+	
+	<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+	<link href="/files/css/theme.css" rel="stylesheet" type="text/css"/>
+	<script src="/files/js/page.js" type="text/javascript"></script>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EC8VHY4W24"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EC8VHY4W24');
+</script></head>
+<body onload="on_page_load()">
+	<div class="page_div">
+				<table class="page_table">
+			<tr class="page_banner_row"><td><a href="/"><img src="/files/images/banner.png"/></a></td></tr>
+			<tr class="page_menu_row"><td class="page_menu_column"><span class='page_menu_span'><a href='/'>Homepage</a></span><span class='page_menu_span'><a href='/projects'>Projects</a></span><span class='page_menu_span'><a href='/documents'>Documents</a></span><span class='page_menu_span'><a href='/notes'>Notes</a></span><span class='page_menu_span'><a href='/archive'>Archive</a></span><span class='page_menu_span'><a href='/about'>About</a></span><span class='social_icon_bar'><span class='contact_icon'><a href='/' onmouseover='prepare_contact_information_box(this)'><img src='/files/images/contact_icon.png' width='20' height='15'></a></span><span class='x_icon'><a href='https://www.x.com/alpgulec' target='_blank'><img src='/files/images/x_icon.png' width='15' height='15'></a></span></span></td></tr>
+			<tr>
+				<td>
+					<!-- Center Table: Begin -->
+					<table class="center_table">
+						<tr>
+							<td class="center_table_content_column">
+								
+<table class="content_table">
+	<tr>
+		<td class="content_table_column">
+			<b><span class='content_title'><a href='/documents/11-linear-quadratic-estimation'>Linear Quadratic Estimation</a></span></b><pre class='pre_content'>Even though modeling reality is mostly difficult in life, approximation is possible via predictions which is updated by observations. Initial predictions which do not depend on well analogical inferences, may cause high deviations. But, these predictions may be better if their effects are measurable, follow certain patterns and the results are evaluated, properly. Deviation from reality, may become lower with the inclusion of experience.
+
+Classical physics which looks deterministic, deviates from reality because of factors which are not considered in equation. So, predictions should be revised to avoid from increasing deviation. Equations are just models and they are not equivalent to reality. Results differ slightly from actual. But, small errors increase with the time and deviation increases.
+
+<img src="/storage/content/11/1.png">
+
+For example, the measurements made with inertial measurement unit (IMU) of an unmanned aerial vehicle (UAV), have small errors because of limited accuracy. These small errors grow and mislead the UAV. So, Linear Quadratic Estimation (Kalman filter) is used for improving predictions.
+
+Although Kalman filter is called as a filter, it is used for a prediction tool in various fields. Literally, it filters the noise and based on prediction, comparison, update and revised estimation stages.
+
+<img src="/storage/content/11/2.png">
+Statistics comes into play here. In a non-deterministic, stochastic systems, it’s not possible to get 100% accurate results because of system noise and measurement noise. If the system is linear and the noise is Gaussian, Kalman filter’s approximation is better. "Gaussian", also known as “Normal distribution” is seen in this condition. Weighted average variance is calculated and when it decreases, precision increases.
+
+<img src="/storage/content/11/33.png">
+
+For the constant <img src="/storage/content/11/3.png">, at first, the estimated value is <img src="/storage/content/11/6.png"> with <img src="/storage/content/11/5.png"> variance at <img src="/storage/content/11/4.png">.
+
+<img src="/storage/content/11/7.png">
+
+And, the estimated value is <img src="/storage/content/11/10.png"> with <img src="/storage/content/11/9.png"> variance at <img src="/storage/content/11/8.png">.
+
+
+The weighted average of these,
+<img src="/storage/content/11/11.png">
+<img src="/storage/content/11/12.png">
+<img src="/storage/content/11/13.png">
+<img src="/storage/content/11/14.png">
+
+
+<img src="/storage/content/11/15.png">
+<img src="/storage/content/11/16.png">
+The new entries made in the following manner,
+<img src="/storage/content/11/17.png">
+
+And the variance is updated.
+<img src="/storage/content/11/18.png">
+
+As you see, these operations can be done, recursively.
+
+Estimation is done before the observation at <img src="/storage/content/11/34.png"> again.
+<img src="/storage/content/11/20.png">
+And correction is done depending on observation.
+<img src="/storage/content/11/21.png">
+Kalman filter works in this way as a dynamic model.
+
+Kalman gain is "weight" depending on <img src="/storage/content/11/22.png"> and <img src="/storage/content/11/23.png">.
+
+
+These formulas are seen when we look at Kalman filter,
+<img src="/storage/content/11/24.png">
+At first, <b>k</b> is index of discrete time. <img src="/storage/content/11/32.png"> is estimation value and <img src="/storage/content/11/41.png"> is previous estimation value, <img src="/storage/content/11/42.png"> is control value and <img src="/storage/content/11/35.png"> is previous noise value.
+
+<b>A;</b> state transition matrix, <b>B;</b> control matrix, <b>H;</b> observation matrix. 
+
+<img src="/storage/content/11/36.png"> is measured value, <img src="/storage/content/11/37.png"> is measurement noise.
+
+
+These formulas are used in estimation period,
+<img src="/storage/content/11/25.png">
+<img src="/storage/content/11/38.png">, estimation value at <b>k</b>, <img src="/storage/content/11/39.png"> is value (before the measurement, after the estimation). <img src="/storage/content/11/40.png"> is co-variance (before measurement), <b>Q</b> is estimated error co-variance.
+
+
+In the measurement update stage, these formulas are seen,
+<img src="/storage/content/11/26.png">
+
+Pre-fit residual is calculated with this formula,
+<img src="/storage/content/11/27.png">
+
+And then Kalman gain is calculated,
+<img src="/storage/content/11/28.png">
+(<b>R</b> is measurement error co-variance)
+
+With <img src="/storage/content/11/29.png"> co-variance is updated.
+
+
+<b>Summary,</b>
+<b>1.</b> Estimation before the measurement.
+<img src="/storage/content/11/30.png">
+
+<b>2.</b> Estimation of the error co-variance.
+<img src="/storage/content/11/31.png">
+
+<b>3.</b> Kalman gain is calculated.
+<img src="/storage/content/11/28.png">
+
+<b>4.</b> Estimation update stage
+<img src="/storage/content/11/26.png">
+
+<b>5.</b> Error co-variance is updated.
+<img src="/storage/content/11/29.png">
+
+There is also an extended version of the Kalman filter for nonlinear systems. It is transforming nonlinear to linear by using Jacobian matrices. Generally, the Kalman filter formulas are the same after the initial steps.</pre>		</td>
+	</tr>
+</table>							</td>
+							<td class="center_table_sidebar_column">
+<div class="sidebar_div">
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Information
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_text_content_column">
+				I completely translated my website into the English language. It is time for <a  href="/notes/14-a-new-start">a new start</a>.			</td>
+		</tr>
+	</table>
+
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Most Read
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_list_content_column">
+				<ul class="sidebar_table_list">
+				<li class='sidebar_table_list_item'><a href='/projects/2-experimental-programming-language-and-win32-ide'>Experimental Programming Language and Win32 IDE</a></li><li class='sidebar_table_list_item'><a href='/projects/33-scientific-operating-system'>Scientific Operating System</a></li><li class='sidebar_table_list_item'><a href='/projects/32-scientific-calculation-library'>Scientific Calculation Library</a></li><li class='sidebar_table_list_item'><a href='/documents/13-specialized-spinlock'>Specialized Spinlock</a></li><li class='sidebar_table_list_item'><a href='/archive/9-detective-bit-bytes-toolbox-the-time-machine-archived'>Detective Bit Bytes' Toolbox - The Time Machine (Archived)</a></li>				</ul>
+			</td>
+		</tr>
+	</table>
+
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Recently Added
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_list_content_column">
+				<ul class="sidebar_table_list">
+				<li class='sidebar_table_list_item'><a href='/archive/19-alpgulec-com'>alpgulec.com</a></li><li class='sidebar_table_list_item'><a href='/archive/9-detective-bit-bytes-toolbox-the-time-machine-archived'>Detective Bit Bytes' Toolbox - The Time Machine (Archived)</a></li><li class='sidebar_table_list_item'><a href='/notes/14-a-new-start'>A New Start</a></li><li class='sidebar_table_list_item'><a href='/archive/18-bilimsehri-com-closed-down'>bilimsehri.com (Closed Down)</a></li><li class='sidebar_table_list_item'><a href='/archive/17-reverse-engineering-documents-archived'>Reverse Engineering Documents (Archived)</a></li>				</ul>
+			</td>
+		</tr>
+	</table>
+</div></td>
+						</tr>
+					</table>
+					<!-- Center Table: End -->
+				</td>
+			</tr>
+			<tr class="page_footer_row"><td><span class="copyright_text">Alp Güleç © 2007 - <script>print_year()</script></span></td></tr>
+		</table>
+	</div>
+</body>
+</html>
+

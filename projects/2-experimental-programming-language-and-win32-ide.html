@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<meta name="keywords" content="alp gulec, system programming, computer science, algorithms, operating systems"/>
+	<meta name="description" content="Personal website is about computer science"/>
+	
+	<title>Alp Güleç Personal Website</title>
+	
+	<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+	<link href="/files/css/theme.css" rel="stylesheet" type="text/css"/>
+	<script src="/files/js/page.js" type="text/javascript"></script>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EC8VHY4W24"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EC8VHY4W24');
+</script></head>
+<body onload="on_page_load()">
+	<div class="page_div">
+				<table class="page_table">
+			<tr class="page_banner_row"><td><a href="/"><img src="/files/images/banner.png"/></a></td></tr>
+			<tr class="page_menu_row"><td class="page_menu_column"><span class='page_menu_span'><a href='/'>Homepage</a></span><span class='page_menu_span'><a href='/projects'>Projects</a></span><span class='page_menu_span'><a href='/documents'>Documents</a></span><span class='page_menu_span'><a href='/notes'>Notes</a></span><span class='page_menu_span'><a href='/archive'>Archive</a></span><span class='page_menu_span'><a href='/about'>About</a></span><span class='social_icon_bar'><span class='contact_icon'><a href='/' onmouseover='prepare_contact_information_box(this)'><img src='/files/images/contact_icon.png' width='20' height='15'></a></span><span class='x_icon'><a href='https://www.x.com/alpgulec' target='_blank'><img src='/files/images/x_icon.png' width='15' height='15'></a></span></span></td></tr>
+			<tr>
+				<td>
+					<!-- Center Table: Begin -->
+					<table class="center_table">
+						<tr>
+							<td class="center_table_content_column">
+								
+<table class="content_table">
+	<tr>
+		<td class="content_table_column">
+			<b><span class='content_title'><a href='/projects/2-experimental-programming-language-and-win32-ide'>Experimental Programming Language and Win32 IDE</a></span></b><pre class='pre_content'>In 2008, I started to develop an experimental programming language, compiler and linker from scratch. Without using a third-party compiler, linker, assembler, library, etc. I completed it. I created the structure and the working principle in a unique way. So, it is a completely unique project. This project is a Win32 compiler, linker and a development environment at the same time.
+
+I completely wrote the project in Assembly Language. So, the project size is only 53 kb and the default compiled exe size is 3 kb. The file size expands according to the code you write. My aim was not to develop a new language, product, etc. There is no need either. I just wanted to create an experimental project.
+
+<table class="project_information_table">
+<tr><td class="project_information_table_title" colspan="2">Project Information</td></tr>
+<tr><td class="project_information_table_left_column">Development Year:</td><td class="project_information_table_right_column">2008</td></tr>
+<tr><td class="project_information_table_left_column">Programming Language:</td><td class="project_information_table_right_column">x86 Assembly</td></tr>
+<tr><td class="project_information_table_left_column">Operating System:</td><td class="project_information_table_right_column">Windows XP+</td></tr>
+<tr><td class="project_information_table_left_column">Language:</td><td class="project_information_table_right_column">English</td></tr>
+<tr><td class="project_information_table_left_column">Size:</td><td class="project_information_table_right_column">53 KB</td></tr>
+</table>
+<b>Important Update (2023)</b>
+I designed this project for the Turkish Language in the past and later I decided to translate it into the English language, completely. The whole programming language and UI are using English words now. The variable types like "sayı", "karakter" have become "number", "character". The component properties like "yazı", "boyut" have become "text", "size", etc. The commands, the events, everything is translated.
+
+While I was translating the project, I didn't add something new but I fixed some minor bugs. It is still a very old project and I stopped working on it in 2010. I was using a 1024x768 monitor in these years.
+
+<img src="/storage/content/2/compiler1.png">
+
+You can configure the form components as you like in the development environment. Expand, hide, etc. I also stored and read these in my own way. There is no resource section in the executable file.
+
+<b>Usage</b>
+
+I added 5 different components for the interface.
+"Button, combobox, edit, listbox and static." 
+
+You can add these components to the form by clicking the buttons on the top, you can adjust properties on the right screen. You can add events, as well.
+
+In the lower part, there is an information screen. You can see incorrect lines of code and status from there.
+
+The code screen and the form stand in back-to-back. You can easily switch using the buttons at the top.
+
+And finally you can compile and run with the buttons on the top right.
+
+<img src="/storage/content/2/compiler2.png">
+
+You can find the compiled executable file in the project folder.
+
+<b>Programming Language</b>
+
+<u>Defining Variables:</u>
+
+There are two types of variables. 
+
+<b>number</b> and <b>character</b>
+
+<b><font color="blue">number:</font></b>
+<b>number</b> is a signed integer data type and it can store a 32 bit number.
+
+<b>Usage:</b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>number value</td></tr><tr><td class='content_code_table_line_column'>2</td><td>number value=254</td></tr></table></pre>
+<b><font color="blue">character:</font></b>
+character data type can store a character array.
+
+<b>Usage:</b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>character[10] str</td></tr></table></pre>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>character[10] str=test</td></tr></table></pre>
+We defined str and initialized it with "test".
+
+<u>We use variables with exclamation(!) symbol.</u>
+
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>!value=4</td></tr><tr><td class='content_code_table_line_column'>2</td><td>!value=!othervalue</td></tr></table></pre>
+and
+
+You can make calculations.
+
+<b>Usage:</b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>!value=!value+1</td></tr><tr><td class='content_code_table_line_column'>2</td><td>!value=1+3*4/2</td></tr><tr><td class='content_code_table_line_column'>3</td><td>!value=!othervalue+2*5</td></tr></table></pre>
+You can also assign <b>character</b> variables to each other.
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>!str=!otherstr</td></tr></table></pre>
+
+<b><font color="blue">Components</font></b>
+There are 5 different components.
+"Button, combobox, edit, listbox and static."
+
+<b>Warning:</b> Component properties should not be changed in the main code block. Using events like "starting" (When the application is starting), "exiting" (When the application is exiting), "clicked", etc. is recommended. Otherwise, the code you have provided will update the component infinitely in the main window loop.
+
+<b>Wrong Usage (X):</b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>variables</td></tr><tr><td class='content_code_table_line_column'>2</td><td>code</td></tr><tr><td class='content_code_table_line_column'>3</td><td>button1.text=test</td></tr><tr><td class='content_code_table_line_column'>4</td><td>end</td></tr></table></pre>
+<b>Correct Usage (✔):</b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>variables</td></tr><tr><td class='content_code_table_line_column'>2</td><td>code</td></tr><tr><td class='content_code_table_line_column'>3</td><td>starting</td></tr><tr><td class='content_code_table_line_column'>4</td><td>button1.text=test</td></tr><tr><td class='content_code_table_line_column'>5</td><td>eventend</td></tr><tr><td class='content_code_table_line_column'>6</td><td>end</td></tr></table></pre>
+
+<b><font color="grey">Text changing</font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>button1.text=test</td></tr><tr><td class='content_code_table_line_column'>2</td><td>button1.text=!variableText</td></tr><tr><td class='content_code_table_line_column'>3</td><td>edit1.text=test</td></tr><tr><td class='content_code_table_line_column'>4</td><td>edit1.text=!variableText</td></tr></table></pre>
+
+<b><font color="grey">Position adjustment</font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>button1.position(24,43)</td></tr><tr><td class='content_code_table_line_column'>2</td><td>button1.position(!x,!y)</td></tr></table></pre>
+
+<b><font color="grey">Size adjustment</font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>button1.size(50,100)</td></tr><tr><td class='content_code_table_line_column'>2</td><td>button1.size(!width,!height)</td></tr></table></pre>
+
+<b><font color="grey">Enable/Disabled</font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>button1.enabled</td></tr><tr><td class='content_code_table_line_column'>2</td><td>button1.disabled</td></tr></table></pre>
+
+<b><font color="grey">Show/Hide</font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>button1.show</td></tr><tr><td class='content_code_table_line_column'>2</td><td>button1.hide</td></tr></table></pre>
+
+<b><font color="grey">Add an element to the listbox</font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>listbox1.insert=test</td></tr><tr><td class='content_code_table_line_column'>2</td><td>listbox1.insert=!variableText</td></tr></table></pre>
+
+<b><font color="grey">Add an element to the combobox</font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>combobox1.add=test</td></tr><tr><td class='content_code_table_line_column'>2</td><td>combobox1.add=!variableText</td></tr></table></pre>
+
+<b><font color="grey">Delete an element from the listbox</font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>listbox1.delete=0</td></tr></table></pre>
+
+<b><font color="grey">Delete an element from the combobox</font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>combobox1.remove=0</td></tr></table></pre>
+
+<b><font color="blue">Other functions</font></b>
+
+<b><font color="grey">Close:</font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>exit</td></tr></table></pre>
+
+<b><font color="grey">Message Box:</font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>messagebox(title,text)</td></tr><tr><td class='content_code_table_line_column'>2</td><td>messagebox(!variableTitle,!variableText)</td></tr><tr><td class='content_code_table_line_column'>3</td><td>messagebox(test,!variableText)</td></tr></table></pre>
+
+<b><font color="blue">Events</font></b>
+
+<b><font color="grey">When the program is starting: </font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>starting</td></tr><tr><td class='content_code_table_line_column'>2</td><td>messagebox(test,test)</td></tr><tr><td class='content_code_table_line_column'>3</td><td>eventend</td></tr></table></pre>
+
+All events end with the "eventend" tag. 
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>eventend</td></tr></table></pre>
+
+<b><font color="grey">When the program is closing: </font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>exiting</td></tr><tr><td class='content_code_table_line_column'>2</td><td>messagebox(test,text)</td></tr><tr><td class='content_code_table_line_column'>3</td><td>eventend</td></tr></table></pre>
+
+<b><font color="grey">When a button component is clicked:</font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>clicked</td></tr><tr><td class='content_code_table_line_column'>2</td><td></td></tr><tr><td class='content_code_table_line_column'>3</td><td>button1</td></tr><tr><td class='content_code_table_line_column'>4</td><td>exit</td></tr><tr><td class='content_code_table_line_column'>5</td><td>eventend</td></tr><tr><td class='content_code_table_line_column'>6</td><td></td></tr><tr><td class='content_code_table_line_column'>7</td><td>button2</td></tr><tr><td class='content_code_table_line_column'>8</td><td>messagebox(test,text)</td></tr><tr><td class='content_code_table_line_column'>9</td><td>eventend</td></tr><tr><td class='content_code_table_line_column'>10</td><td></td></tr><tr><td class='content_code_table_line_column'>11</td><td>eventend</td></tr></table></pre>
+
+<b>Usage:</b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>button1</td></tr><tr><td class='content_code_table_line_column'>2</td><td>exit</td></tr><tr><td class='content_code_table_line_column'>3</td><td>eventend</td></tr></table></pre>
+
+<b><font color="grey">When an edit component is changed: </font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>changed</td></tr><tr><td class='content_code_table_line_column'>2</td><td></td></tr><tr><td class='content_code_table_line_column'>3</td><td>edit1</td></tr><tr><td class='content_code_table_line_column'>4</td><td>exit</td></tr><tr><td class='content_code_table_line_column'>5</td><td>eventend</td></tr><tr><td class='content_code_table_line_column'>6</td><td></td></tr><tr><td class='content_code_table_line_column'>7</td><td>edit2</td></tr><tr><td class='content_code_table_line_column'>8</td><td>messagebox(test,test)</td></tr><tr><td class='content_code_table_line_column'>9</td><td>eventend</td></tr><tr><td class='content_code_table_line_column'>10</td><td></td></tr><tr><td class='content_code_table_line_column'>11</td><td>eventend</td></tr></table></pre>
+
+<b><font color="grey">When a combobox component is selected:</font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>cbselected</td></tr><tr><td class='content_code_table_line_column'>2</td><td></td></tr><tr><td class='content_code_table_line_column'>3</td><td>combobox1</td></tr><tr><td class='content_code_table_line_column'>4</td><td>exit</td></tr><tr><td class='content_code_table_line_column'>5</td><td>eventend</td></tr><tr><td class='content_code_table_line_column'>6</td><td></td></tr><tr><td class='content_code_table_line_column'>7</td><td>eventend</td></tr></table></pre>
+
+<b><font color="grey">When a listbox component is selected: </font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>lbselected</td></tr><tr><td class='content_code_table_line_column'>2</td><td></td></tr><tr><td class='content_code_table_line_column'>3</td><td>listbox1</td></tr><tr><td class='content_code_table_line_column'>4</td><td>exit</td></tr><tr><td class='content_code_table_line_column'>5</td><td>eventend</td></tr><tr><td class='content_code_table_line_column'>6</td><td></td></tr><tr><td class='content_code_table_line_column'>7</td><td>eventend</td></tr></table></pre>
+
+<b><font color="grey">When a listbox component selection is changed:</font></b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>lbselectionchanged</td></tr><tr><td class='content_code_table_line_column'>2</td><td></td></tr><tr><td class='content_code_table_line_column'>3</td><td>listbox1</td></tr><tr><td class='content_code_table_line_column'>4</td><td>exit</td></tr><tr><td class='content_code_table_line_column'>5</td><td>eventend</td></tr><tr><td class='content_code_table_line_column'>6</td><td></td></tr><tr><td class='content_code_table_line_column'>7</td><td>eventend</td></tr></table></pre>
+
+<b><font color="blue">Conditionals</font></b>
+You can compare variables, numbers, variable-numbers, etc.
+
+>, <, >=, <=, =
+
+You can use these operators for comparison.
+
+<u>Comparisons can be nested.</u>
+
+<b>Usage:</b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>if(!abc&gt;2) </td></tr><tr><td class='content_code_table_line_column'>2</td><td>messagebox(test,test) </td></tr><tr><td class='content_code_table_line_column'>3</td><td>ifend</td></tr></table></pre>
+We use this tag for ending the comparison.
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>ifend</td></tr></table></pre>
+
+<b><font color="blue">Loop</font></b>
+
+<b>Usage:</b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>loop(!value&lt;15) </td></tr><tr><td class='content_code_table_line_column'>2</td><td>messagebox(test,test) </td></tr><tr><td class='content_code_table_line_column'>3</td><td>!value=!value+1 </td></tr><tr><td class='content_code_table_line_column'>4</td><td>loopend</td></tr></table></pre>
+<u>Nested loops can be used.</u>
+
+<b><font color="blue">Functions</font></b>
+You can define your functions. 
+
+<b>Usage:</b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>function testFunc </td></tr><tr><td class='content_code_table_line_column'>2</td><td>!a=!a*2 </td></tr><tr><td class='content_code_table_line_column'>3</td><td>!b=2+3+!a </td></tr><tr><td class='content_code_table_line_column'>4</td><td>funcend</td></tr></table></pre>
+We use this tag to end the function
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>funcend</td></tr></table></pre>
+We call the function by using this code.
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>call testFunc</td></tr></table></pre>
+<b>Usage:</b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>fonksiyon testFunc</td></tr><tr><td class='content_code_table_line_column'>2</td><td>!a=!a*2 </td></tr><tr><td class='content_code_table_line_column'>3</td><td>!b=2+3+!a </td></tr><tr><td class='content_code_table_line_column'>4</td><td>funcend</td></tr><tr><td class='content_code_table_line_column'>5</td><td></td></tr><tr><td class='content_code_table_line_column'>6</td><td>... </td></tr><tr><td class='content_code_table_line_column'>7</td><td></td></tr><tr><td class='content_code_table_line_column'>8</td><td>call testFunc</td></tr></table></pre>
+
+<b><font color="blue">Error Messages</font></b>
+Variable block could not be found.
+Code block could not be found.
+Code block not closed.
+
+The most primitive program block that can be
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>variables</td></tr><tr><td class='content_code_table_line_column'>2</td><td>code</td></tr><tr><td class='content_code_table_line_column'>3</td><td>end</td></tr></table></pre>
+Variables block must take the first place.
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>variables</td></tr></table></pre>
+<b>Component could not be found:</b> You must add the component you defined in the code.
+<b>There is an unclosed block:</b> You must close a condition, loop or event, etc.
+
+The programming language is processed line by line. Do not use unnecessary spaces in a single line.
+
+<img src="/storage/content/2/compiler2.png">
+
+<b><font color="blue">Examples</font></b>
+<b>Warning:</b> There may be invisible spaces and characters in the copied and pasted example code.
+
+<b>Program1:</b>
+At first, place two buttons on the form.
+
+<b>Code:</b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>variables</td></tr><tr><td class='content_code_table_line_column'>2</td><td>character[10] title=test</td></tr><tr><td class='content_code_table_line_column'>3</td><td>character[15] text=test2</td></tr><tr><td class='content_code_table_line_column'>4</td><td>code</td></tr><tr><td class='content_code_table_line_column'>5</td><td></td></tr><tr><td class='content_code_table_line_column'>6</td><td>clicked</td></tr><tr><td class='content_code_table_line_column'>7</td><td>button1 </td></tr><tr><td class='content_code_table_line_column'>8</td><td>messagebox(!title,!text)</td></tr><tr><td class='content_code_table_line_column'>9</td><td>eventend</td></tr><tr><td class='content_code_table_line_column'>10</td><td>button2</td></tr><tr><td class='content_code_table_line_column'>11</td><td>exit</td></tr><tr><td class='content_code_table_line_column'>12</td><td>eventend</td></tr><tr><td class='content_code_table_line_column'>13</td><td>eventend</td></tr><tr><td class='content_code_table_line_column'>14</td><td></td></tr><tr><td class='content_code_table_line_column'>15</td><td>end</td></tr></table></pre>
+
+<b>Program2:</b>
+Place one button on the form.
+
+<b>Code:</b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>variables</td></tr><tr><td class='content_code_table_line_column'>2</td><td>number !x=0</td></tr><tr><td class='content_code_table_line_column'>3</td><td>number !y=0</td></tr><tr><td class='content_code_table_line_column'>4</td><td>code</td></tr><tr><td class='content_code_table_line_column'>5</td><td></td></tr><tr><td class='content_code_table_line_column'>6</td><td>clicked</td></tr><tr><td class='content_code_table_line_column'>7</td><td>button1 </td></tr><tr><td class='content_code_table_line_column'>8</td><td></td></tr><tr><td class='content_code_table_line_column'>9</td><td>loop(!x&lt;200)</td></tr><tr><td class='content_code_table_line_column'>10</td><td>button1.position(!x,!y)</td></tr><tr><td class='content_code_table_line_column'>11</td><td>!x=!x+1</td></tr><tr><td class='content_code_table_line_column'>12</td><td>!y=!y+1</td></tr><tr><td class='content_code_table_line_column'>13</td><td>loopend</td></tr><tr><td class='content_code_table_line_column'>14</td><td></td></tr><tr><td class='content_code_table_line_column'>15</td><td>eventend</td></tr><tr><td class='content_code_table_line_column'>16</td><td>eventend</td></tr><tr><td class='content_code_table_line_column'>17</td><td></td></tr><tr><td class='content_code_table_line_column'>18</td><td>end</td></tr></table></pre>
+
+<b>Program3:</b>
+Place one button and one listbox on the form.
+
+<b>Code:</b>
+<pre class='content_code_table_pre'><table class='content_code_table'><tr><td class='content_code_table_line_column'>1</td><td>variables</td></tr><tr><td class='content_code_table_line_column'>2</td><td>number x=0</td></tr><tr><td class='content_code_table_line_column'>3</td><td>character[3] str=ok</td></tr><tr><td class='content_code_table_line_column'>4</td><td>code</td></tr><tr><td class='content_code_table_line_column'>5</td><td></td></tr><tr><td class='content_code_table_line_column'>6</td><td>clicked</td></tr><tr><td class='content_code_table_line_column'>7</td><td>button1</td></tr><tr><td class='content_code_table_line_column'>8</td><td></td></tr><tr><td class='content_code_table_line_column'>9</td><td>loop(!x&lt;8)</td></tr><tr><td class='content_code_table_line_column'>10</td><td>listbox1.insert=!str</td></tr><tr><td class='content_code_table_line_column'>11</td><td>!x=!x+1</td></tr><tr><td class='content_code_table_line_column'>12</td><td></td></tr><tr><td class='content_code_table_line_column'>13</td><td>if(!x=4)</td></tr><tr><td class='content_code_table_line_column'>14</td><td>messagebox(half,half of the loop)</td></tr><tr><td class='content_code_table_line_column'>15</td><td>ifend</td></tr><tr><td class='content_code_table_line_column'>16</td><td></td></tr><tr><td class='content_code_table_line_column'>17</td><td>loopend</td></tr><tr><td class='content_code_table_line_column'>18</td><td></td></tr><tr><td class='content_code_table_line_column'>19</td><td>eventend</td></tr><tr><td class='content_code_table_line_column'>20</td><td>eventend</td></tr><tr><td class='content_code_table_line_column'>21</td><td></td></tr><tr><td class='content_code_table_line_column'>22</td><td>starting</td></tr><tr><td class='content_code_table_line_column'>23</td><td>messagebox(hello,hello)</td></tr><tr><td class='content_code_table_line_column'>24</td><td>eventend</td></tr><tr><td class='content_code_table_line_column'>25</td><td></td></tr><tr><td class='content_code_table_line_column'>26</td><td>exiting</td></tr><tr><td class='content_code_table_line_column'>27</td><td>messagebox(bye,bye)</td></tr><tr><td class='content_code_table_line_column'>28</td><td>eventend</td></tr><tr><td class='content_code_table_line_column'>29</td><td>end</td></tr></table></pre></pre>		</td>
+	</tr>
+</table>							</td>
+							<td class="center_table_sidebar_column">
+<div class="sidebar_div">
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Information
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_text_content_column">
+				I completely translated my website into the English language. It is time for <a  href="/notes/14-a-new-start">a new start</a>.			</td>
+		</tr>
+	</table>
+
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Most Read
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_list_content_column">
+				<ul class="sidebar_table_list">
+				<li class='sidebar_table_list_item'><a href='/projects/2-experimental-programming-language-and-win32-ide'>Experimental Programming Language and Win32 IDE</a></li><li class='sidebar_table_list_item'><a href='/projects/33-scientific-operating-system'>Scientific Operating System</a></li><li class='sidebar_table_list_item'><a href='/projects/32-scientific-calculation-library'>Scientific Calculation Library</a></li><li class='sidebar_table_list_item'><a href='/documents/13-specialized-spinlock'>Specialized Spinlock</a></li><li class='sidebar_table_list_item'><a href='/archive/9-detective-bit-bytes-toolbox-the-time-machine-archived'>Detective Bit Bytes' Toolbox - The Time Machine (Archived)</a></li>				</ul>
+			</td>
+		</tr>
+	</table>
+
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Recently Added
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_list_content_column">
+				<ul class="sidebar_table_list">
+				<li class='sidebar_table_list_item'><a href='/archive/19-alpgulec-com'>alpgulec.com</a></li><li class='sidebar_table_list_item'><a href='/archive/9-detective-bit-bytes-toolbox-the-time-machine-archived'>Detective Bit Bytes' Toolbox - The Time Machine (Archived)</a></li><li class='sidebar_table_list_item'><a href='/notes/14-a-new-start'>A New Start</a></li><li class='sidebar_table_list_item'><a href='/archive/18-bilimsehri-com-closed-down'>bilimsehri.com (Closed Down)</a></li><li class='sidebar_table_list_item'><a href='/archive/17-reverse-engineering-documents-archived'>Reverse Engineering Documents (Archived)</a></li>				</ul>
+			</td>
+		</tr>
+	</table>
+</div></td>
+						</tr>
+					</table>
+					<!-- Center Table: End -->
+				</td>
+			</tr>
+			<tr class="page_footer_row"><td><span class="copyright_text">Alp Güleç © 2007 - <script>print_year()</script></span></td></tr>
+		</table>
+	</div>
+</body>
+</html>
+

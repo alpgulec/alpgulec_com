@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<meta name="keywords" content="alp gulec, system programming, computer science, algorithms, operating systems"/>
+	<meta name="description" content="Personal website is about computer science"/>
+	
+	<title>Alp Güleç Personal Website</title>
+	
+	<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+	<link href="/files/css/theme.css" rel="stylesheet" type="text/css"/>
+	<script src="/files/js/page.js" type="text/javascript"></script>
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EC8VHY4W24"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EC8VHY4W24');
+</script></head>
+<body onload="on_page_load()">
+	<div class="page_div">
+				<table class="page_table">
+			<tr class="page_banner_row"><td><a href="/"><img src="/files/images/banner.png"/></a></td></tr>
+			<tr class="page_menu_row"><td class="page_menu_column"><span class='page_menu_span'><a href='/'>Homepage</a></span><span class='page_menu_span'><a href='/projects'>Projects</a></span><span class='page_menu_span'><a href='/documents'>Documents</a></span><span class='page_menu_span'><a href='/notes'>Notes</a></span><span class='page_menu_span'><a href='/archive'>Archive</a></span><span class='page_menu_span'><a href='/about'>About</a></span><span class='social_icon_bar'><span class='contact_icon'><a href='/' onmouseover='prepare_contact_information_box(this)'><img src='/files/images/contact_icon.png' width='20' height='15'></a></span><span class='x_icon'><a href='https://www.x.com/alpgulec' target='_blank'><img src='/files/images/x_icon.png' width='15' height='15'></a></span></span></td></tr>
+			<tr>
+				<td>
+					<!-- Center Table: Begin -->
+					<table class="center_table">
+						<tr>
+							<td class="center_table_content_column">
+								
+<table class="content_table">
+	<tr>
+		<td class="content_table_column">
+			<b><span class='content_title'><a href='/documents/10-fast-fourier-transform'>Fast Fourier Transform</a></span></b><pre class='pre_content'>In this article, I talk about Fast Fourier Transform (FFT) which I used for arbitrary precision multiplication. I will also mention FFT multiplication for arbitrary precision arithmetic, later.
+
+At first, I would like to start with “Fourier Series” which makes Joseph Fourier popular. “Fourier Series” is sum of sines and cosines which is expansion of a periodic function. Briefly, sum of sines and cosines represents a function or approximate.
+
+<img src="/storage/content/10/1.png">
+<img src="/storage/content/10/2.png">
+<img src="/storage/content/10/3.png">
+
+a0, ai ve bi  constants are coefficients of Fn(x).
+
+<b>Square Wave approximation with Fourier series,</b>
+<img src="/storage/content/10/4.png">
+
+Periodic functions are represented with sum of complex exponentials. When we look at exponential functions, we see Euler’s number (e)
+
+<b>Recall;</b> e constant
+
+<img src="/storage/content/10/5.png">
+<img src="/storage/content/10/6.png">
+<img src="/storage/content/10/7.png">
+
+At this point, we see Euler’s formula. He discovered the relation between exponential function and trigonometric function.
+
+<img src="/storage/content/10/8.png">
+
+<img src="/storage/content/10/9.png">
+
+<b>Recall;</b> complex number
+
+<img src="/storage/content/10/10.png">
+
+As is known, π radians equals to 180 degrees. So, if we put π, we see that <img class="pre_content_line_image" src="/storage/content/10/13.png">
+
+Because,
+
+cos(π)=-1 and sin(π)=0
+
+Complex numbers are represented with x, y on 2D coordinate system and π = 180 radians, cos(π) + isin(π) = -1
+
+So, <img src="/storage/content/10/13.png">
+
+
+Now, if we focus on FFT, we see that integrable aperiodic functions are transformable with general Fourier Series formula, too. Time - frequency transformation is done at this point.
+
+<b>Time Domain</b>
+<img src="/storage/content/10/14_1.png">
+
+<b>Frequency Domain</b>
+<img src="/storage/content/10/14_2.png">
+
+The FFT transformation.
+
+<img src="/storage/content/10/15.png">
+
+FFT Inversion is similar. (Be careful about the sign.)
+
+<img src="/storage/content/10/16.png">
+
+But, these functions are continuous and we must use discrete version of FFT in the digital world.
+
+
+When we focus on <b>Discrete FFT</b>, we see Riemann's Sum Approximation which is a familiar method to be used for integration in digital world.  As you see, if we draw more rectangles, we get more accurate results.
+<img src="/storage/content/10/17.png">
+and Discrete FFT is seen in this form,
+
+<img src="/storage/content/10/18.png">, n complex number array is transformed by DFT.
+
+<img src="/storage/content/10/19.png">
+
+As an output, we get N-periodic complex number array.
+
+<img src="/storage/content/10/20.png">
+
+Also, inverse of this operation is similar.
+
+<img src="/storage/content/10/21.png">
+
+There is something that needs to be added. DFT algorithm's complexity is O(n²) and this means; the number of steps to do this operation, grows exponentially. So, we have to optimize it as much as possible(if we can). We may spend hours/days for an operation which can be done in minutes.
+
+<img src="/storage/content/10/22.png">
+
+<b>Fast Fourier Transform</b> was developed for this reason and its complexity is O(nlogn). It brings significant time savings.
+
+Divide and conquer philosophy lies behind it. The problem is divided into sub problems, solved recursively.
+
+In this part, I shall mention about <b>Cooley-Tukey</b> FFT (Radix-2 Decimation-in-Time ) algorithm.
+
+
+At first, we calculate odd and even indexed elements, separately and then bring together them again.
+<img src="/storage/content/10/23.png">
+
+As you see, <b>2m</b> represents even and <b>2m+1</b> represents odd index.
+
+And we don’t do the same operations thanks to symmetry property of DFT.
+
+
+<b>In detailed form,</b>
+<img src="/storage/content/10/24.png">
+
+and
+
+<img src="/storage/content/10/25.png">
+<img src="/storage/content/10/26.png">
+
+As you see, there is symmetry property. So, there is a common factor.
+
+<img src="/storage/content/10/27.png">
+
+Taking into account that the DFT is periodic,
+<img src="/storage/content/10/28.png">
+<img src="/storage/content/10/29.png">
+
+Finally,
+<img src="/storage/content/10/30.png"></pre>		</td>
+	</tr>
+</table>							</td>
+							<td class="center_table_sidebar_column">
+<div class="sidebar_div">
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Information
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_text_content_column">
+				I completely translated my website into the English language. It is time for <a  href="/notes/14-a-new-start">a new start</a>.			</td>
+		</tr>
+	</table>
+
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Most Read
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_list_content_column">
+				<ul class="sidebar_table_list">
+				<li class='sidebar_table_list_item'><a href='/projects/2-experimental-programming-language-and-win32-ide'>Experimental Programming Language and Win32 IDE</a></li><li class='sidebar_table_list_item'><a href='/projects/33-scientific-operating-system'>Scientific Operating System</a></li><li class='sidebar_table_list_item'><a href='/projects/32-scientific-calculation-library'>Scientific Calculation Library</a></li><li class='sidebar_table_list_item'><a href='/documents/13-specialized-spinlock'>Specialized Spinlock</a></li><li class='sidebar_table_list_item'><a href='/archive/9-detective-bit-bytes-toolbox-the-time-machine-archived'>Detective Bit Bytes' Toolbox - The Time Machine (Archived)</a></li>				</ul>
+			</td>
+		</tr>
+	</table>
+
+	<table class="sidebar_table">
+		<tr class="sidebar_table_row_header">
+			<td>
+				Recently Added
+			</td>
+		</tr>
+		<tr class="sidebar_table_row_content">
+			<td class="sidebar_table_list_content_column">
+				<ul class="sidebar_table_list">
+				<li class='sidebar_table_list_item'><a href='/archive/19-alpgulec-com'>alpgulec.com</a></li><li class='sidebar_table_list_item'><a href='/archive/9-detective-bit-bytes-toolbox-the-time-machine-archived'>Detective Bit Bytes' Toolbox - The Time Machine (Archived)</a></li><li class='sidebar_table_list_item'><a href='/notes/14-a-new-start'>A New Start</a></li><li class='sidebar_table_list_item'><a href='/archive/18-bilimsehri-com-closed-down'>bilimsehri.com (Closed Down)</a></li><li class='sidebar_table_list_item'><a href='/archive/17-reverse-engineering-documents-archived'>Reverse Engineering Documents (Archived)</a></li>				</ul>
+			</td>
+		</tr>
+	</table>
+</div></td>
+						</tr>
+					</table>
+					<!-- Center Table: End -->
+				</td>
+			</tr>
+			<tr class="page_footer_row"><td><span class="copyright_text">Alp Güleç © 2007 - <script>print_year()</script></span></td></tr>
+		</table>
+	</div>
+</body>
+</html>
+
